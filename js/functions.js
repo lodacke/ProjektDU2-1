@@ -31,6 +31,7 @@ function click_filter_element (event) {
 // CODE according to specification
 
 function create_filter_element (data) {
+
   const create_li = document.createElement("li");
   data.parent.append(create_li);
   create_li.classList.add(data.class);
