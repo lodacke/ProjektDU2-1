@@ -7,7 +7,6 @@ function click_filter_element (event) {
 
 
   update_programmes();
-  create_programme();
   /*
     ARGUMENTS
       event: event-object created when user clicks on one of the filter elements.
@@ -208,8 +207,17 @@ function create_programme (programme) {
     NO RETURN VALUE
 
   */  
-
+ document.querySelector("#programmes > p").innerHTML = "";
+     
+        let programme_dom = document.createElement("li");
+        programme_dom.classList.add("programme");
+        programme_dom.textContent = programme.name;
+        document.querySelector("#programmes > ul").append(programme_dom);
+        
 }
+
+array_each(PROGRAMMES, create_programme);
+      
 
 
 // G
