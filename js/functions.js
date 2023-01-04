@@ -24,8 +24,16 @@ function click_filter_element (event) {
 
 // G
 // CODE according to specification
-function create_filter_element (data) {
 
+function create_filter_element (data) {
+  const create_li = document.createElement("li");
+  data.parent.append(create_li);
+  create_li.classList.add(data.class);
+  create_li.classList.remove("selected");
+  create_li.textContent = data.textContent;
+  create_li.addEventListener("click", click_filter_element);
+
+  return create_li;
   /*
     ARGUMENTS
       data: object that contains the following keys:
