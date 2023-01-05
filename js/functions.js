@@ -24,7 +24,6 @@ function click_filter_element (event) {
   
 }
 
-
 // G
 // CODE according to specification
 
@@ -160,8 +159,8 @@ function create_countries_cities_filters () {
 // ABSTRACT AND WRITE SPECIFICATION
 //    As you can see, all three functions below do basically the same thing.
 //    Abstract them to one function, and write the specification of that function.
-function create_levels_filter () {
-  function create_level (level) {
+function create_element (level) {
+  let parent = level.name;
     const dom = create_filter_element({
       parent: document.querySelector("#level_filter > ul"),
       class: "selected",
@@ -169,32 +168,11 @@ function create_levels_filter () {
     });
     dom.dataset.id = level.id;
   }
-  array_each(LEVELS, create_level);
-}
-// Create Subjects Filter
-function create_subjects_filter () {
-  function create_subject (subject) {
-    const dom = create_filter_element({
-      parent: document.querySelector("#subject_filter > ul"),
-      class: "selected",
-      textContent: subject.name,
-    });
-    dom.dataset.id = subject.id;
-  }
-  array_each(SUBJECTS, create_subject);
-}
-// Create Search Field
-function create_language_filter () {
-  function create_element (data) {
-    const dom = create_filter_element({
-      parent: document.querySelector("#language_filter > ul"),
-      class: "selected",
-      textContent: data.name,
-    });
-    dom.dataset.id = data.id;
-  }
+
+  array_each(LEVELS, create_element);
+  array_each(SUBJECTS, create_element);
   array_each(LANGUAGES, create_element);
-}
+
 
 
 // G / VG (see details in specification)
@@ -228,16 +206,27 @@ function create_programme (programme) {
     programme_dom.textContent = programme.name;
     document.querySelector("#programmes > ul").append(programme_dom);
 
+    let sun_value = CITIES[UNIVERSITIES[programme.universityID].cityID].sun;
+
     programme_dom.innerHTML = `
-    <div> ${programme.name} </div>
+    <div> ${programme.name} 
+    <p> ${UNIVERSITIES[programme.universityID].name}
+    <p> ${CITIES[UNIVERSITIES[programme.universityID].cityID].name},
+     ${COUNTRIES[CITIES[UNIVERSITIES[programme.universityID].cityID].countryID].name} </p>
+     <p> ${LEVELS[programme.levelID -1].name},
+         ${SUBJECTS[programme.subjectID].name},
+         ${LANGUAGES[programme.languageID].name} </p>
+    </div>
     <div class="more_info"> </div>
-    <div class="bottom_programme"> </div>` 
-
-    //console.log(programme); 
+    <div class="bottom_programme">
+    <p>${CITIES[UNIVERSITIES[programme.universityID].cityID].name}, 
+    sun-index: (${percenter(sun_value, 365)})
+    </p> 
+    </div>
+    `
+    
 }
-
 array_each(PROGRAMMES, create_programme);
-      
 
 
 // G
