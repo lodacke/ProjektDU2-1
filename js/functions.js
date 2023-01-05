@@ -5,7 +5,6 @@ function click_filter_element (event) {
 
   event.currentTarget.classList.toggle("selected");
 
-
   update_programmes();
   /*
     ARGUMENTS
@@ -30,7 +29,9 @@ function click_filter_element (event) {
 // CODE according to specification
 
 function create_filter_element (data) {
-
+  const button = document.querySelector("button");
+  document.querySelector("button").addEventListener("click", toggle_cities);
+  button.classList.add(data.class);
   const create_li = document.createElement("li");
   data.parent.append(create_li);
   create_li.classList.add(data.class);
@@ -98,8 +99,21 @@ function toggle_cities (event) {
       If it is de-selected then it selects ALL city-filter-elements 
 
     NO RETURN VALUE
+    
 
   */
+    let all_cities = document.querySelectorAll("#country_filter li");
+    const button = document.querySelector("button");
+    button.classList.toggle("selected");
+
+    function toggle_selected(city){
+
+    if (button.classList !== ("selected")){
+      city.classList.toggle("selected");
+      }
+    
+ }
+ array_each(all_cities, toggle_selected)
 
 }
 
@@ -209,11 +223,17 @@ function create_programme (programme) {
   */  
  document.querySelector("#programmes > p").innerHTML = "";
      
-        let programme_dom = document.createElement("li");
-        programme_dom.classList.add("programme");
-        programme_dom.textContent = programme.name;
-        document.querySelector("#programmes > ul").append(programme_dom);
-        
+    let programme_dom = document.createElement("li");
+    programme_dom.classList.add("programme");
+    programme_dom.textContent = programme.name;
+    document.querySelector("#programmes > ul").append(programme_dom);
+
+    programme_dom.innerHTML = `
+    <div> ${programme.name} </div>
+    <div class="more_info"> </div>
+    <div class="bottom_programme"> </div>` 
+
+    //console.log(programme); 
 }
 
 array_each(PROGRAMMES, create_programme);
