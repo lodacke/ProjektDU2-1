@@ -137,19 +137,19 @@ function toggle_cities (event) {
   samt ger den ett id från arrayen (country + nycklen, med namn "id", från arrayen).
   - Den ger DOM-elementet en titel av indexet "name" i arrayen, samt skapar en ul med klassen "filter_list".
   - Den appendar DOM-elementet till country_filter > ul.
+  - Funktionen anropar test_function som ger en array med alla städer som har samma countryID som cityID.
 
   funktionen returnerar ingenting.
 
   SPECIFICATIONS create_city:
-  arguments: Funktionen tar emot ett argument (city) som är en variabel som representar ett index i array CITIES.
-  side-effects: funktionen skapar ett objekt. 
+  arguments: Funktionen tar emot ett argument (city) som är en variabel som representar ett index i array cities(en array om skapas i testfunktionen i create_country.).
+  side-effects: funktionen skapar ett objekt som kopplas till funktionen create_filter_elements.
   Objektet har nycklarna: 
-  parent(som hänvisar till vilken plats i HTML dokumentet informationen ska visas), 
-  class(vilken klass nyckeln ska ha), 
-  textContent (variabeln med nyckel "name"). 
+  - parent(som hänvisar till vilken plats i HTML dokumentet informationen ska visas), 
+  - class(vilken klass nyckeln ska ha), 
+ -  textContent (variabeln med nyckel "name"). 
 
-  Funktionen returnerar dom.dataset.id <--- FORTSÄTT MED DETTA SEN.
-
+  Funktionen ger även objektet ett data_id med ett namn baserat på variablens namn.
 
  */
 
@@ -254,7 +254,7 @@ function create_programme (programme) {
     <div class="more_info"> </div>
     <div class="bottom_programme">
     <p>${CITIES[UNIVERSITIES[programme.universityID].cityID].name}, 
-    sun-index: (${percenter(sun_value, 365)})
+    sun-index: (${percenter(sun_value, 365) + "%"})
     </p> 
     </div>
     `
