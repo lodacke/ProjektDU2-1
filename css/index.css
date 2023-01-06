@@ -87,16 +87,16 @@ body {
 }
 
 #top_images> :nth-child(1) {
-  background-image: url("/media/geo_images/france_normal_1.jpg");
+  background-image: url("../media/geo_images/france_normal_1.jpg");
   background-position: center;
 }
 
 #top_images > :nth-child(2){
-  background-image: url("/media/geo_images/france_normal_3.jpg");
+  background-image: url("../media/geo_images/france_normal_3.jpg");
 }
 
 #top_images > :nth-child(3){
-  background-image: url("/media/geo_images/boston_normal_2.jpg");
+  background-image: url("../media/geo_images/boston_normal_2.jpg");
 }
 
 
