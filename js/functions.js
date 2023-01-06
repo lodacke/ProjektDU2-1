@@ -109,6 +109,8 @@ function toggle_cities (event) {
 
     if (button.classList !== ("selected")){
       city.classList.toggle("selected");
+
+      update_programmes();
       }
     
  }
@@ -301,8 +303,15 @@ function update_programmes () {
 // You must understand how this function works. There will be questions about it
 // in the code review (kodredovisning)
 
+/*SPECIFICATIONS READ_FILERS:
+ARGUMENTS: Funktionen tar inte emot några argument.
+
+
+
 // Optional VG: Which parts of the function's code could be abstracted?
 //              Implement it
+
+*/
 function read_filters () {
   
   const city_selected_dom = document.querySelectorAll("#country_filter li.selected");
