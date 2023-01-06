@@ -193,20 +193,32 @@ function create_countries_cities_filters () {
 // ABSTRACT AND WRITE SPECIFICATION
 //    As you can see, all three functions below do basically the same thing.
 //    Abstract them to one function, and write the specification of that function.
-function create_element (level) {
-  let parent = level.name;
+
+/*SPECIFICATIONS create_filter
+arguments: Funktionen tar emot två funktioner, en sträng och en array.
+Funktionen anropar array_each med argumentet DATA och den inre funktionen "create".
+side-effect: Funktionen skapar via funktionen "create" ett objekt kopplat till funktionen "create_filter_elements" med nycklarna:
+Parent: Väljer ul element på HTML sidan med "filter_type" och filter som id.
+Class: "selected"
+TextContent: variabeln DATA och nycklen name.
+Funktionen ger även varje variabel ett data-id baserat på variabeln DATA.
+*/
+
+
+function create_filter(filter_type, DATA) {
+  function create(data) {
     const dom = create_filter_element({
-      parent: document.querySelector("#level_filter > ul"),
+      parent: document.querySelector(`#${filter_type}_filter > ul`),
       class: "selected",
-      textContent: level.name,
+      textContent: data.name,
     });
-    dom.dataset.id = level.id;
+    dom.dataset.id = data.id;
   }
-
-  array_each(LEVELS, create_element);
-  array_each(SUBJECTS, create_element);
-  array_each(LANGUAGES, create_element);
-
+  array_each(DATA, create);
+}
+create_filter("level", LEVELS);
+create_filter("subject", SUBJECTS);
+create_filter("language", LANGUAGES);
 
 
 // G / VG (see details in specification)
